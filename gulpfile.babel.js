@@ -17,6 +17,7 @@ const bundleJS = (isWatch, isUglify) => {
     debug: true,
     cache: {},
     packageCache: {},
+    extensions: ['.jsx']
   });
 
   bundler.transform(babelify);
