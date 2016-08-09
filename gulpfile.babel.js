@@ -5,11 +5,14 @@ import watchify from 'watchify';
 import licensify from 'licensify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
+import browserSync from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
+
+const bs = browserSync.create();
 const $ = gulpLoadPlugins();
 
 const bundleJS = (isWatch, isUglify) => {
-  const src = 'src/js/app.js';
+  const src = 'src/js/index.js';
   const bundler = browserify(src, {
     debug: true,
     cache: {},
@@ -29,7 +32,8 @@ const bundleJS = (isWatch, isUglify) => {
       .pipe(isUglify ? $.sourcemaps.init({loadMaps: true}) : $.util.noop())
       .pipe(isUglify ? $.uglify({ preserveComments: 'license' }) : $.util.noop())
       .pipe(isUglify ? $.sourcemaps.write() : $.util.noop())
-      .pipe(gulp.dest('dest/js'));
+      .pipe(gulp.dest('dest/js'))
+      .pipe(bs.stream({once: true}));
   };
 
   if (isWatch) {
@@ -51,5 +55,8 @@ gulp.task('js', () => {
 });
 
 gulp.task('watch', () => {
-  bundleJS(true, true);
+  bs.init({
+    server: './dest'
+  });
+  bundleJS(true, false);
 });
