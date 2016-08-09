@@ -12,7 +12,7 @@ const bs = browserSync.create();
 const $ = gulpLoadPlugins();
 
 const bundleJS = (isWatch, isUglify) => {
-  const src = 'src/js/index.js';
+  const src = 'src/js/index.jsx';
   const bundler = browserify(src, {
     debug: true,
     cache: {},
