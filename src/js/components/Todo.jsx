@@ -9,3 +9,5 @@ const Todo = ({ text }) => (
 Todo.propTypes = {
   text: PropTypes.string.isRequired,
 };
+
+export default Todo;
