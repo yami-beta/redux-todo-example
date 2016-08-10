@@ -7,8 +7,8 @@ import { addTodo } from './actions';
 import App from './components/App';
 
 let store = createStore(todo);
-store.dispatch(addTodo('Hello React!'))
-store.dispatch(addTodo('Hello Redux!'))
+store.dispatch(addTodo('Hello React!'));
+store.dispatch(addTodo('Hello Redux!'));
 
 render(
   <Provider store={store}>
