@@ -6,6 +6,9 @@
     "env": {
         "browser": "true"
     },
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "rules": {
         "arrow-body-style": 0
     }
